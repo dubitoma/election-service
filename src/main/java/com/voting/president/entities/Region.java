@@ -1,4 +1,4 @@
-package president.voting.entities;
+package com.voting.president.entities;
 
 public enum Region {
     NEW_ENGLAND("New England"),

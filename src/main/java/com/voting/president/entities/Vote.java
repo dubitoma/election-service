@@ -1,4 +1,4 @@
-package president.voting.entities;
+package com.voting.president.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
