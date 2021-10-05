@@ -41,3 +41,41 @@ http://localhost:8080/api/elections/
         "agenda": "Cats are so cewl, bad mister kitty!"
     },
 ```
+### Register a new vote
+
+**Definition**
+`POST /vote`
+
+**Arguments**
+
+- `"candidateNumber":integer` a candidate's number on the list of the voted candidate
+- `"voterSsn":integer` a voter's social security number 
+
+**Response**
+- `201 Created` on success 
+
+If a vote has already been cast by the voter, then error message will be returned. 
+
+- `401 Unauthorised` on trying to vote again
+
+```json
+{
+    "errorMessage": "A vote has already been cast by the voter 122"
+}
+```
+
+- `404 Not Found` if the candidate does not exist
+
+```json
+{
+    "errorMessage": "Candidate does not exist 143"
+}
+```
+
+- `404 Not Found` if the voter is not registered
+
+```json
+{
+    "errorMessage": "Voter does not exist 234234"
+}
+```
