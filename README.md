@@ -1,4 +1,4 @@
-# president-election backend
+# Election backend service
 Simplified president election backend service 
 
 # requirements
