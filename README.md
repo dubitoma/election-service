@@ -79,3 +79,126 @@ If a vote has already been cast by the voter, then error message will be returne
     "errorMessage": "Voter does not exist 234234"
 }
 ```
+## Lookup of overall distribution of votes amongst candidates
+
+**Definition**
+`GET /votes`
+
+**Response**
+
+- `200 OK` on success
+
+```json
+    {
+        "candidate": {
+            "fullName": "Donald Trump",
+            "number": 1,
+            "agenda": "I will make america great again!"
+        },
+        "numberOfVotes": 3
+    },
+    {
+        "candidate": {
+            "fullName": "Rosie Odonel",
+            "number": 2,
+            "agenda": "Im gonna make some pankakes!"
+        },
+        "numberOfVotes": 2
+    },
+    {
+        "candidate": {
+            "fullName": "Eric Cartman",
+            "number": 3,
+            "agenda": "Cats are so cewl, bad mister kitty!"
+        },
+        "numberOfVotes": 0
+    },
+```
+
+## Lookup of voting result distribution amongst different regions
+
+**Definition**
+`GET /regions`
+
+**Response**
+
+- `200 OK` on success
+
+```json
+    {
+        "region": "Mid-Atlantic",
+        "votes": [
+            {
+                "candidate": {
+                    "fullName": "Rosie Odonel",
+                    "number": 2,
+                    "agenda": "Im gonna make some pankakes!"
+                },
+                "numberOfVotes": 1
+            }
+        ]
+    },
+    {
+        "region": "New England",
+        "votes": [
+            {
+                "candidate": {
+                    "fullName": "Donald Trump",
+                    "number": 1,
+                    "agenda": "I will make america great again!"
+                },
+                "numberOfVotes": 1
+            }
+        ]
+    },
+    {
+        "region": "The South",
+        "votes": [
+            {
+                "candidate": {
+                    "fullName": "Donald Trump",
+                    "number": 1,
+                    "agenda": "I will make america great again!"
+                },
+                "numberOfVotes": 2
+            }
+        ]
+    },
+```
+## Return a winner cadidate
+
+**Definition**
+`GET /winner`
+
+**Response**
+
+- `200 OK` on success when candidates been voted for by more than 50%
+
+```json
+    {
+        "fullName": "Donald Trump",
+        "number": 1,
+        "agenda": "I will make america great again!"
+    }
+```
+- `200 OK` on success when there is no one winner candidate
+
+```json
+    {
+        "fullName": "Donald Trump",
+        "number": 1,
+        "agenda": "I will make america great again!"
+    },
+    {
+        "fullName": "Rosie Odonel",
+        "number": 2,
+        "agenda": "Im gonna make some pankakes!"
+    }
+```
+- `404 Not Found` when there are more than two candidates with the same votes
+
+```json
+{
+    "errorMessage": "To many participants (3) have the same amount of votes. No clear winner."
+}
+``` 
